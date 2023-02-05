@@ -5,7 +5,10 @@ module.exports = {
   corePlugins: {
     preflight: false
   },
-  content: ['./src/**/*.{html,js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{html,js,ts,jsx,tsx}',
+  ],
   important: '#root',
   variants: {
     extend: {
@@ -20,8 +23,10 @@ module.exports = {
       },
       fontFamily: {
         display: ['Lexend', ...defaultTheme.fontFamily.sans],
-        logo: ['"Baloo 2"', 'cursive'],
-        base: ['"Inter"', 'sans-serif'],
+        logo: ['Permanent Marker'],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       colors: {
         accent: '#1C3A6B',
@@ -78,36 +83,51 @@ module.exports = {
         'gradient-y-fastest': 'gradient-y 2s ease infinite',
         'gradient-y-toofast': 'gradient-y 1s ease infinite',
         'gradient-xy': 'gradient-xy 15s ease infinite',
+        blob: 'blob 7s infinite',
         marquee: 'marquee linear infinite',
         marquee2: 'marquee2 linear infinite',
       },
       keyframes: {
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "tranlate(0px, 0px) scale(1)",
+          },
+        },
         load: {
-          '0%': { 
+          '0%': {
             transform: 'rotate(0deg)',
             'border-radius': '44px',
-            
+
           },
-          '50%': { 
+          '50%': {
             transform: 'rotate(1080deg)',
             'border-radius': '30px'
           },
-          '100%': { 
+          '100%': {
             transform: 'rotate(0deg)',
             'border-radius': '44px'
           }
         },
         'load-inner': {
-          '0%': { 
+          '0%': {
             transform: 'rotate(180deg) scale(1)',
             'border-radius': '8px',
-            
+
           },
           '25%': {
             transform: 'rotate(90deg) scale(1.3)',
             'border-radius': '20px'
           },
-          '50%': { 
+          '50%': {
             transform: 'rotate(0deg) scale(1)',
             'border-radius': '12px'
           },
@@ -115,7 +135,7 @@ module.exports = {
             transform: 'rotate(90deg) scale(1.3)',
             'border-radius': '20px'
           },
-          '100%': { 
+          '100%': {
             transform: 'rotate(180deg) scale(1)',
             'border-radius': '8px'
           }
@@ -162,10 +182,10 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'), 
-    require('@tailwindcss/aspect-ratio'), 
-    require('@tailwindcss/typography'), 
-    require('@tailwindcss/line-clamp'),
-    require('tailwindcss-textshadow'),
+    // require('@tailwindcss/forms'), 
+    // require('@tailwindcss/aspect-ratio'), 
+    // require('@tailwindcss/typography'), 
+    // require('@tailwindcss/line-clamp'),
+    // require('tailwindcss-textshadow'),
   ],
 }
