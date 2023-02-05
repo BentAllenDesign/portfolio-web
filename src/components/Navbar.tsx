@@ -1,6 +1,5 @@
 import { DarkMode, LightMode } from "@mui/icons-material";
-import { Box, Container, IconButton, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Box, Container, IconButton } from "@mui/material";
 import clsx from "clsx";
 import { memo, useCallback } from "react";
 import { Link } from "react-router-dom";

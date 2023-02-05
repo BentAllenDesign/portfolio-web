@@ -1,5 +1,4 @@
 import { Box } from "@mui/material"
-import { lightBlue } from "@mui/material/colors"
 import { Container } from "@mui/system"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
