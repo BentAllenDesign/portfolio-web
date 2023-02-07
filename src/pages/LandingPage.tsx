@@ -1,8 +1,8 @@
-import { ChevronRightRounded, GitHub, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+import { ChevronRightRounded, GitHub, LinkedIn } from "@mui/icons-material";
 import { Box, Button, Container, IconButton } from "@mui/material";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import { useAppTheme } from "../lib/hooks/useAppTheme"
+import { useAppTheme } from "../lib/hooks/useAppTheme";
 
 export const LandingPage = () => {
   const { darkMode } = useAppTheme();

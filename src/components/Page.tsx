@@ -1,7 +1,7 @@
 import { Box } from "@mui/material"
 import { Container } from "@mui/system"
 import clsx from "clsx"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import { useAppThemeState } from "../lib/hooks/useAppTheme"
 import { Navbar } from "./Navbar"
