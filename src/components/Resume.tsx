@@ -50,7 +50,7 @@ export const Heart = memo<IHeart>(({ children }) => (
   </span>
 ))
 
-export const HeartSeparatedList = (list: string[], darkMode?: boolean) => {
+export const HeartSeparatedList = (list: string[]) => {
 
   return (
     <span className="flex flex-wrap gap-x-2 items-center first:hidden break-word">

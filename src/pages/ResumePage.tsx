@@ -1,28 +1,12 @@
-import React, { Component, memo, ReactNode } from 'react'
 import { my } from '../../personal.config'
 
 import {
-  DataObjectRounded,
-  CodeRounded,
-  BuildRounded,
-  FitnessCenterRounded,
-  SettingsRounded,
-  SchoolRounded,
-  DirectionsBoatFilledRounded,
-  MessageRounded,
-  AirplaneTicketRounded,
-  QueueRounded,
-  GamepadRounded,
-  GamesRounded,
-  ClassSharp,
-  SportsEsportsRounded,
-  ConfirmationNumberRounded,
-  PeopleRounded
+  BuildRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded
 } from '@mui/icons-material'
 import { Box, Container } from '@mui/material'
-import { Section, HeartSeparatedList, Header, Details } from '../components/Resume'
-import { useAppTheme } from '../lib/hooks/useAppTheme'
 import clsx from 'clsx'
+import { Details, Header, HeartSeparatedList, Section } from '../components/Resume'
+import { useAppTheme } from '../lib/hooks/useAppTheme'
 
 const jobIcons = [
   <SettingsRounded key={0} />,
