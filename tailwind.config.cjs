@@ -84,6 +84,7 @@ module.exports = {
         'gradient-y-toofast': 'gradient-y 1s ease infinite',
         'gradient-xy': 'gradient-xy 15s ease infinite',
         blob: 'blob 7s infinite',
+        'blob-slow': 'blob 10s infinite',
         marquee: 'marquee linear infinite',
         marquee2: 'marquee2 linear infinite',
       },
@@ -93,13 +94,13 @@ module.exports = {
             transform: "translate(0px, 0px) scale(1)",
           },
           "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
+            transform: "translate(30px, -50px) scale(1.1) rotate(15deg)",
           },
           "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
+            transform: "translate(-20px, 20px) scale(0.9) rotate(-10deg)",
           },
           "100%": {
-            transform: "tranlate(0px, 0px) scale(1)",
+            transform: "translate(0px, 0px) scale(1)",
           },
         },
         load: {
