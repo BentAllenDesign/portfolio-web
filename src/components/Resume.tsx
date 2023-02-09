@@ -1,4 +1,4 @@
-import { DiamondRounded } from "@mui/icons-material";
+import { BoltRounded, DiamondRounded } from "@mui/icons-material";
 import { Box } from "@mui/system";
 import clsx from "clsx";
 import { memo, ReactNode } from "react";
@@ -56,7 +56,7 @@ export const HeartSeparatedList = (list: string[]) => {
     <span className="flex flex-wrap gap-x-2 items-center first:hidden break-word">
       {list.map((item, idx) => (
         <>
-          <DiamondRounded className="text-sm first:hidden" />
+          <BoltRounded className="text-sm first:hidden" />
           <span key={idx} className="w-max flex break-words">
             {item}
           </span>
