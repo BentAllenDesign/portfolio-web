@@ -7,6 +7,8 @@ import { Box, Container } from '@mui/material'
 import clsx from 'clsx'
 import { Details, Header, HeartSeparatedList, Section } from '../components/Resume'
 import { useAppTheme } from '../lib/hooks/useAppTheme'
+import { IPageProps } from '../lib/types'
+import { useEffect } from 'react'
 
 const jobIcons = [
   <SettingsRounded key={0} />,
@@ -21,11 +23,13 @@ const projectIcons = [
   <SportsEsportsRounded />
 ]
 
-export const ResumePage = () => {
+export const ResumePage = (props: IPageProps) => {
   const theme = useAppTheme();
 
+  useEffect(() => { document.title = "Joshe - " + props.title }, []);
+
   return (
-    <Container className={clsx("max-w-5xl", theme.darkMode ? 'text-zinc-200' : 'text-zinc-800')}>
+    <Container className={clsx("max-w-5xl", theme.darkMode ? 'text-zinc-100' : 'text-zinc-800')}>
       <div className='resume'>
         <Header {...theme} />
         <Section title='Projects'>
@@ -34,29 +38,29 @@ export const ResumePage = () => {
               <Box className='flex gap-x-2'>
                 {icon}
                 <Box>
-                  <b>{my.projects.names[idx]}: </b>
-                  {my.projects.bullets[idx]}
+                  <b className='text-lg'>{my.projects.names[idx]}: </b>
+                  <span className={clsx(theme.darkMode ? 'text-zinc-300' : 'text-zinc-700')}>{my.projects.bullets[idx]}</span>
                 </Box>
               </Box>
             ))}
           </ul>
         </Section>
-        <Section title='Technical'>
+        <Section title='Skills'>
           <ul className='[&>*]:my-4'>
             <Box className='flex gap-x-2'>
               <CodeRounded />
-              <b>Languages: </b>
-              {HeartSeparatedList(my.knowledge.languages)}
+              <b className='text-lg'>Languages: </b>
+              {HeartSeparatedList(my.knowledge.languages, theme.darkMode)}
             </Box>
             <Box className='flex gap-x-2'>
               <FitnessCenterRounded />
-              <b>Practices: </b>
-              {HeartSeparatedList(my.knowledge.practices)}
+              <b className='text-lg'>Practices: </b>
+              {HeartSeparatedList(my.knowledge.practices, theme.darkMode)}
             </Box>
             <Box className='flex gap-x-2'>
               <BuildRounded />
-              <b>Technologies: </b>
-              {HeartSeparatedList(my.knowledge.technologies)}
+              <b className='text-lg'>Technologies: </b>
+              {HeartSeparatedList(my.knowledge.technologies, theme.darkMode)}
             </Box>
           </ul>
         </Section>
@@ -69,7 +73,7 @@ export const ResumePage = () => {
               </Box>
               <ul>
                 {job.bullets.map((item, j) => (
-                  <li key={j}>{item}</li>
+                  <li key={j} className={clsx(theme.darkMode ? 'text-zinc-300' : 'text-zinc-700')}>{item}</li>
                 ))}
               </ul>
             </ul>
