@@ -1,16 +1,20 @@
 import { ChevronRightRounded, GitHub, LinkedIn } from "@mui/icons-material";
 import { Box, Button, Container, IconButton } from "@mui/material";
 import clsx from "clsx";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppTheme } from "../lib/hooks/useAppTheme";
+import { IPageProps } from "../lib/types";
 
-export const LandingPage = () => {
+export const LandingPage = (props: IPageProps) => {
   const { darkMode } = useAppTheme();
+
+  useEffect(() => { document.title = "Joshe - " + props.title }, []);
 
   return (
     <Container>
-      <Box className="flex flex-col lg:flex-row gap-8">
-        <Box className="flex rounded-full overflow-clip h-44 w-44 min-w-36 drop-shadow self-center sm:self-start">
+      <Box className="flex flex-col lg:flex-row gap-8 items-center justify-center">
+        <Box className="flex rounded-full overflow-clip h-44 w-44 min-w-36 drop-shadow lg:self-start items-center">
           <img src="/headshot.jpg" alt="Joshua Shevach - headshot photo" className="object-cover h-48 w-56 self-center scale-150" />
         </Box>
         <Box className="max-w-2xl">

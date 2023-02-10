@@ -13,7 +13,11 @@ export const Page = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('darkMode', `${theme.darkMode}`);
+    if (!localStorage.getItem('darkMode')) {
+      setTheme({ darkMode: true })
+      localStorage.setItem('darkMode', `true`);
+    }
+    else localStorage.setItem('darkMode', `${theme.darkMode}`);
   }, [theme]);
 
   const setDarkMode = useCallback((darkMode: boolean) => {

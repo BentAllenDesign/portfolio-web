@@ -94,10 +94,10 @@ module.exports = {
             transform: "translate(0px, 0px) scale(1)",
           },
           "33%": {
-            transform: "translate(30px, -50px) scale(1.1) rotate(15deg)",
+            transform: "translate(80px, -50px) scale(1.1) rotate(15deg)",
           },
           "66%": {
-            transform: "translate(-20px, 20px) scale(0.9) rotate(-10deg)",
+            transform: "translate(-50px, 20px) scale(0.9) rotate(-10deg)",
           },
           "100%": {
             transform: "translate(0px, 0px) scale(1)",

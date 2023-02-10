@@ -22,7 +22,7 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
       <Box className={clsx("absolute w-full h-full opacity-50 backdrop-blur-lg", theme.darkMode ? 'bg-gray-900' : 'bg-white')} />
       <Container className="flex items-center py-3">
         <Box className="font-logo -rotate-6 -mt-[34px]">
-          <Link to="/" replace className="group no-underline text-transparent">
+          <Link to="/" className="group no-underline text-transparent">
             <span className={clsx("select-none fixed z-50 subpixel-antialiased tracking-tighter text-4xl font-logo", theme.darkMode ? 'text-gray-200' : 'text-gray-900')}>
               JOSHE
             </span>
