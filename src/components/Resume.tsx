@@ -1,4 +1,4 @@
-import { BoltRounded, DarkMode, DiamondRounded } from "@mui/icons-material";
+import { BoltRounded } from "@mui/icons-material";
 import { Box } from "@mui/system";
 import clsx from "clsx";
 import { memo, ReactNode } from "react";
