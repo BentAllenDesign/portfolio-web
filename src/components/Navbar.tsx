@@ -1,7 +1,7 @@
-import { DarkMode, LightMode } from "@mui/icons-material";
-import { Box, Container, IconButton } from "@mui/material";
+import { DarkMode, LightMode, MenuOpen, MenuRounded, MenuSharp } from "@mui/icons-material";
+import { Box, ClickAwayListener, Container, Grow, IconButton, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 import clsx from "clsx";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AppThemeContext } from "../lib/hooks/useAppTheme";
 
@@ -13,13 +13,34 @@ interface INavbar {
 }
 
 export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const mobileMenuAnchorRef = useRef<HTMLButtonElement>(null);
+
   const handleThemeChange = useCallback(() => {
     setDarkMode(!theme.darkMode);
   }, [theme.darkMode]);
 
-  const linkStyles = useMemo<string>(() => 
-    clsx("no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm", theme.darkMode ? 'hover:text-zinc-200' : 'hover:text-zinc-600')
-  , [theme.darkMode])
+  const handleMobileMenuKeyDown = useCallback((event: React.KeyboardEvent) => {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setMobileMenuOpen(false);
+    } else if (event.key === 'Escape') {
+      setMobileMenuOpen(false);
+    }
+  }, []);
+
+  const handleMobileMenuToggle = useCallback(() => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  }, [mobileMenuOpen]);
+
+  const handleMobileMenuClose = useCallback((event: Event | React.SyntheticEvent) => {
+    if (mobileMenuAnchorRef.current && mobileMenuAnchorRef.current.contains(event.target as HTMLElement)) return;
+    setMobileMenuOpen(false);
+  }, [mobileMenuAnchorRef.current]);
+
+  const linkStyles = useMemo<string>(() => {
+    return clsx("no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm", theme.darkMode ? 'hover:text-zinc-200 group-hover:text-cyan-500' : 'hover:text-cyan-500 group-hover:text-cyan-500')
+  }, [theme.darkMode]);
 
   return (
     <Box className="flex items-center drop-shadow-md z-20 fixed w-full top-0 backdrop-blur">
@@ -40,7 +61,7 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
             </span>
           </Link>
         </Box>
-        <Box className={clsx("select-none tracking-tight flex space-x-4 ml-[150px]", theme.darkMode ? 'text-zinc-400' : 'text-zinc-800')}>
+        <Box className={clsx("select-none tracking-tight hidden sm:flex space-x-4 ml-[150px]", theme.darkMode ? 'text-zinc-400' : 'text-zinc-800')}>
           <Link to="/resume" className={linkStyles}>
             resume
           </Link>
@@ -54,11 +75,72 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
             about
           </Link>
         </Box>
-        <IconButton onClick={handleThemeChange} className={clsx("ml-auto transition duration-100", theme.darkMode ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-800 hover:text-zinc-600')}>
-          {theme.darkMode
-            ? <LightMode fontSize="large" className="text-inherit" />
-            : <DarkMode fontSize="large" className="text-inherit" />}
-        </IconButton>
+        <Box className="ml-auto">
+          <IconButton onClick={handleThemeChange} className={theme.darkMode ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-800 hover:text-zinc-600'}>
+            {theme.darkMode
+              ? <LightMode fontSize="large" className="text-inherit" />
+              : <DarkMode fontSize="large" className="text-inherit" />}
+          </IconButton>
+          <>
+            <IconButton
+              ref={mobileMenuAnchorRef}
+              className={clsx("sm:hidden", theme.darkMode ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-800 hover:text-zinc-600')}
+              onClick={handleMobileMenuToggle}
+            >
+              <MenuRounded fontSize="large" />
+            </IconButton>
+            <Popper
+              open={mobileMenuOpen}
+              anchorEl={mobileMenuAnchorRef.current}
+              role={undefined}
+              placement="bottom-start"
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom-start' ? 'left top' : 'left bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleMobileMenuClose}>
+                      <MenuList
+                        autoFocusItem={mobileMenuOpen}
+                        id="composition-menu"
+                        aria-labelledby="composition-button"
+                        onKeyDown={handleMobileMenuKeyDown}
+                      >
+                        <MenuItem onClick={handleMobileMenuClose} className="group">
+                          <Link to="/resume" className={linkStyles}>
+                            resume
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleMobileMenuClose} className="group">
+                          <Link to="/projects" className={linkStyles}>
+                            projects
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleMobileMenuClose} className="group">
+                          <Link to="/contact" className={linkStyles}>
+                            contact
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleMobileMenuClose} className="group">
+                          <Link to="/about" className={linkStyles}>
+                            about
+                          </Link>
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </>
+        </Box>
       </Container>
     </Box>
   )
