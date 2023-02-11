@@ -1,7 +1,6 @@
-import { BadgeRounded, BuildCircleRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded } from "@mui/icons-material"
-import { Badge, SvgIconTypeMap } from "@mui/material"
+import { BadgeRounded, BuildCircleRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded } from "@mui/icons-material";
+import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { ReactNode } from "react"
 
 export interface IMyExperience {
   title: string,
@@ -62,7 +61,7 @@ export const my: IMy = {
     {
       Icon: SportsEsportsRounded,
       name: "Loralai",
-      detail: "5-month small-pod capstone game project for the Game Design Bachelor\'s program at Full Sail University. I specifically worked on gameplay and tools programming. - Code unavailable"
+      detail: "5-month small-pod capstone game project for the Game Design Bachelor's program at Full Sail University. I specifically worked on gameplay and tools programming. - Code unavailable"
     }
   ],
   skills: {

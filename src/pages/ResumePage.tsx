@@ -1,14 +1,11 @@
 import { IMyExperience, my } from '../../personal.config'
 
-import {
-  BuildRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded
-} from '@mui/icons-material'
 import { Box, Container } from '@mui/material'
 import clsx from 'clsx'
+import { useEffect } from 'react'
 import { Details, Header, HeartSeparatedList, Section } from '../components/Resume'
 import { useAppTheme } from '../lib/hooks/useAppTheme'
 import { IPageProps } from '../lib/types'
-import { useEffect } from 'react'
 
 export const ResumePage = (props: IPageProps) => {
   const theme = useAppTheme();
@@ -37,7 +34,7 @@ export const ResumePage = (props: IPageProps) => {
             {Object.keys(my.skills).map((key, idx) => {
               const Icon = my.skills[key].Icon;
               return (
-                <Box className='flex gap-x-2'>
+                <Box key={idx} className='flex gap-x-2'>
                   <Icon />
                   <b className='text-lg'>{key.charAt(0).toUpperCase() + key.slice(1)}: </b>
                   {HeartSeparatedList(my.skills[key].bullets, theme.darkMode)}
