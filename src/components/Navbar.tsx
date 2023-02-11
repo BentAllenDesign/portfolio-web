@@ -1,4 +1,4 @@
-import { DarkMode, LightMode, MenuOpen, MenuRounded, MenuSharp } from "@mui/icons-material";
+import { DarkMode, LightMode, MenuRounded } from "@mui/icons-material";
 import { Box, ClickAwayListener, Container, Grow, IconButton, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 import clsx from "clsx";
 import { memo, useCallback, useMemo, useRef, useState } from "react";
