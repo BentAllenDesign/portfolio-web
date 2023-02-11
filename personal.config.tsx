@@ -1,25 +1,32 @@
-import { BuildCircleRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded } from "@mui/icons-material"
-import { Badge } from "@mui/material"
+import { BadgeRounded, BuildCircleRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded } from "@mui/icons-material"
+import { Badge, SvgIconTypeMap } from "@mui/material"
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { ReactNode } from "react"
 
 export interface IMyExperience {
-  icon: ReactNode,
   title: string,
   company: string,
   location: string,
   duration: string[],
   bullets: string[],
+  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    muiName: string;
+  },
 }
 
 export interface IMySkill {
-  icon: ReactNode,
-  bullets: string[]
+  bullets: string[],
+  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    muiName: string;
+  },
 }
 
 export interface IMyProject {
-  icon: ReactNode,
   name: string,
   detail: string,
+  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    muiName: string;
+  },
 }
 
 export interface IMy {
@@ -33,36 +40,36 @@ export interface IMy {
 export const my: IMy = {
   projects: [
     {
-      icon: <CodeRounded />,
+      Icon: CodeRounded,
       name: "JOSHE",
       detail: "React web application using vite as the bundler and compiler, dockerized and hosted on a high-availability Heroku dyno. - https://github.com/BentAllenDesign/portfolio-web",
     },
     {
-      icon: <DataObjectRounded />,
+      Icon: DataObjectRounded,
       name: "Cruisr",
       detail: "Full-stack React web app and Java Spring backend with a PostgreSQL database masked by a Hasura GraphQL layer. - Code available upon request",
     },
     {
-      icon: <ConfirmationNumberRounded />,
+      Icon: ConfirmationNumberRounded,
       name: "Schrödinger",
       detail: "Full-stack Discord bot with PostgreSQL database deployed to a Heroku dyno. Actively in use by indie game studio Legio Vox Studios. - Code available upon request",
     },
     {
-      icon: <PeopleRounded />,
+      Icon: PeopleRounded,
       name: "Hottos Crafting Company",
       detail: "Simple .NET Discord bot for Animal Crossing island visitor queue management deployed to an AWS EC2 instance. - Code unavailable",
     },
     {
-      icon: <SportsEsportsRounded />,
+      Icon: SportsEsportsRounded,
       name: "Loralai",
       detail: "5-month small-pod capstone game project for the Game Design Bachelor\'s program at Full Sail University. I specifically worked on gameplay and tools programming. - Code unavailable"
     }
   ],
   skills: {
     languages: {
-      icon: <CodeRounded />,
+      Icon: CodeRounded,
       bullets: [
-        'JavaScript', 
+        'JavaScript',
         'TypeScript',
         'HTML',
         'CSS',
@@ -73,7 +80,7 @@ export const my: IMy = {
       ],
     },
     practices: {
-      icon: <FitnessCenterRounded />,
+      Icon: FitnessCenterRounded,
       bullets: [
         'Agile',
         'Scrum',
@@ -85,7 +92,7 @@ export const my: IMy = {
       ],
     },
     technologies: {
-      icon: <BuildCircleRounded />,
+      Icon: BuildCircleRounded,
       bullets: [
         'ASP.NET',
         'Spring Framework',
@@ -113,7 +120,7 @@ export const my: IMy = {
   },
   jobs: [
     {
-      icon: <SettingsRounded />,
+      Icon: SettingsRounded,
       title: 'Full Stack Engineer',
       company: 'Cognizant Technologies',
       location: 'Plano, TX',
@@ -131,11 +138,11 @@ export const my: IMy = {
       ],
     },
     {
-      icon: <SchoolRounded />,
-      title: 'Lab Instructor - Game Design Bachelors',
+      Icon: SchoolRounded,
+      title: 'Lab Instructor',
       company: 'Full Sail University',
       location: 'Winter Park, FL',
-      duration: ['Aug 2020', 'Jun 2021'],
+      duration: ['August 2020', 'June 2021'],
       bullets: [
         "Worked with a large number of new students on a monthly basis in Full Sail's Game Design bachelor's capstone project",
         "Provided assistance in understanding game design pre-production concepts",
@@ -145,7 +152,7 @@ export const my: IMy = {
   ],
   education: [
     {
-      icon: <Badge />,
+      Icon: BadgeRounded,
       title: 'Full Stack Engineer Certification',
       company: 'Southern Methodist University',
       location: 'Dallas, tx',
@@ -153,16 +160,16 @@ export const my: IMy = {
       bullets: []
     },
     {
-      icon: <SchoolRounded />,
-      title: 'Master of Science - Game Design',
+      Icon: SchoolRounded,
+      title: 'Master of Science',
       company: 'Full Sail University',
       location: 'Winter Park, FL',
       duration: ['2019', '2020'],
       bullets: []
     },
     {
-      icon: <SchoolRounded />,
-      title: 'Bachelor of Science - Game Design',
+      Icon: SchoolRounded,
+      title: 'Bachelor of Science',
       company: 'Full Sail University',
       location: 'Winter Park, FL',
       duration: ['2016', '2019'],

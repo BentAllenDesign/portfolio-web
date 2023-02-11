@@ -7,7 +7,7 @@ export const ComingSoon = () => {
 
   return (
     <Container>
-      <h1 className={clsx("font-display", darkMode ? 'text-zinc-200' : 'text-zinc-800')}>Coming Soon!</h1>
+      <h1 className={clsx("text-4xl sm:text-5xl font-display text-center mb-24", darkMode ? 'text-slate-200' : 'text-slate-800')}>Coming Soon!</h1>
     </Container>
   )
 }

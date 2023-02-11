@@ -39,29 +39,29 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
   }, [mobileMenuAnchorRef.current]);
 
   const linkStyles = useMemo<string>(() => {
-    return clsx("no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm", theme.darkMode ? 'hover:text-zinc-200 group-hover:text-cyan-500' : 'hover:text-cyan-500 group-hover:text-cyan-500')
+    return clsx("no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm", theme.darkMode ? 'hover:text-slate-200 group-hover:text-cyan-500' : 'hover:text-slate-900 group-hover:text-cyan-500')
   }, [theme.darkMode]);
 
   return (
     <Box className="flex items-center drop-shadow-md z-20 fixed w-full top-0 backdrop-blur">
-      <Box className={clsx("absolute w-full h-full opacity-70 backdrop-blur-lg", theme.darkMode ? 'bg-slate-800' : 'bg-white')} />
+      <Box className={clsx("absolute w-full h-full opacity-70 backdrop-blur-lg", theme.darkMode ? 'bg-slate-800' : 'bg-slate-100')} />
       <Container className="flex items-center py-3">
         <Box className="font-logo -rotate-6 -mt-[34px]">
           <Link to="/" className="group no-underline text-transparent">
-            <span className={clsx("select-none fixed z-50 subpixel-antialiased tracking-tighter text-4xl font-logo", theme.darkMode ? 'text-gray-200' : 'text-gray-900')}>
+            <span className={clsx("select-none fixed z-50 subpixel-antialiased tracking-tighter text-4xl font-logo", theme.darkMode ? 'text-slate-200' : 'text-slate-900')}>
               JOSHE
             </span>
             <span className={clsx(
               "select-none absolute subpixel-antialiased tracking-tighter text-4xl font-logo transition-all duration-300 ease-in-out translate-x-[1px] translate-y-[3px]",
               "group-hover:translate-x-[3px] group-hover:translate-y-[5px] group-hover:opacity-95 group-hover:scale-105 opacity-40",
-              theme.darkMode ? 'text-gray-300 group-hover:text-cyan-500' : 'text-gray-900 group-hover:text-cyan-500'
+              theme.darkMode ? 'text-slate-300 group-hover:text-cyan-500' : 'text-gray-900 group-hover:text-cyan-500'
             )}
             >
               JOSHE
             </span>
           </Link>
         </Box>
-        <Box className={clsx("select-none tracking-tight hidden sm:flex space-x-4 ml-[150px]", theme.darkMode ? 'text-zinc-400' : 'text-zinc-800')}>
+        <Box className={clsx("select-none tracking-tight hidden sm:flex space-x-4 ml-[150px]", theme.darkMode ? 'text-slate-400' : 'text-slate-600')}>
           <Link to="/resume" className={linkStyles}>
             resume
           </Link>
@@ -76,7 +76,7 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
           </Link>
         </Box>
         <Box className="ml-auto">
-          <IconButton onClick={handleThemeChange} className={theme.darkMode ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-800 hover:text-zinc-600'}>
+          <IconButton onClick={handleThemeChange} className={theme.darkMode ? 'text-slate-400 hover:text-slate-200' : 'text-slate-800 hover:text-slate-600'}>
             {theme.darkMode
               ? <LightMode fontSize="large" className="text-inherit" />
               : <DarkMode fontSize="large" className="text-inherit" />}
@@ -84,7 +84,7 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
           <>
             <IconButton
               ref={mobileMenuAnchorRef}
-              className={clsx("sm:hidden", theme.darkMode ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-800 hover:text-zinc-600')}
+              className={clsx("sm:hidden", theme.darkMode ? 'text-slate-400 hover:text-slate-200' : 'text-slate-800 hover:text-slate-600')}
               onClick={handleMobileMenuToggle}
             >
               <MenuRounded fontSize="large" />
