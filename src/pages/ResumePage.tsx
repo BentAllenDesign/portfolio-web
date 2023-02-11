@@ -1,27 +1,11 @@
-import { my } from '../../personal.config'
+import { IMyExperience, my } from '../../personal.config'
 
-import {
-  BuildRounded, CodeRounded, ConfirmationNumberRounded, DataObjectRounded, FitnessCenterRounded, PeopleRounded, SchoolRounded, SettingsRounded, SportsEsportsRounded
-} from '@mui/icons-material'
 import { Box, Container } from '@mui/material'
 import clsx from 'clsx'
+import { useEffect } from 'react'
 import { Details, Header, HeartSeparatedList, Section } from '../components/Resume'
 import { useAppTheme } from '../lib/hooks/useAppTheme'
 import { IPageProps } from '../lib/types'
-import { useEffect } from 'react'
-
-const jobIcons = [
-  <SettingsRounded key={0} />,
-  <SchoolRounded key={1} />,
-]
-
-const projectIcons = [
-  <CodeRounded />,
-  <DataObjectRounded />,
-  <ConfirmationNumberRounded />,
-  <PeopleRounded />,
-  <SportsEsportsRounded />
-]
 
 export const ResumePage = (props: IPageProps) => {
   const theme = useAppTheme();
@@ -29,17 +13,17 @@ export const ResumePage = (props: IPageProps) => {
   useEffect(() => { document.title = "Joshe - " + props.title }, []);
 
   return (
-    <Container className={clsx("max-w-5xl", theme.darkMode ? 'text-zinc-100' : 'text-zinc-800')}>
+    <Container className={clsx("max-w-5xl", theme.darkMode ? 'text-slate-100' : 'text-slate-800')}>
       <div className='resume'>
         <Header {...theme} />
         <Section title='Projects'>
           <ul className='[&>*]:my-4'>
-            {projectIcons.map((icon, idx) => (
-              <Box className='flex gap-x-2'>
-                {icon}
+            {my.projects.map(({ Icon, ...project }, idx) => (
+              <Box key={idx} className='flex gap-x-2'>
+                <Icon />
                 <Box>
-                  <b className='text-lg'>{my.projects.names[idx]}: </b>
-                  <span className={clsx(theme.darkMode ? 'text-zinc-300' : 'text-zinc-700')}>{my.projects.bullets[idx]}</span>
+                  <b className='text-lg'>{project.name}: </b>
+                  <span className={clsx(theme.darkMode ? 'text-slate-300' : 'text-slate-700')}>{project.detail}</span>
                 </Box>
               </Box>
             ))}
@@ -47,44 +31,39 @@ export const ResumePage = (props: IPageProps) => {
         </Section>
         <Section title='Skills'>
           <ul className='[&>*]:my-4'>
-            <Box className='flex gap-x-2'>
-              <CodeRounded />
-              <b className='text-lg'>Languages: </b>
-              {HeartSeparatedList(my.knowledge.languages, theme.darkMode)}
-            </Box>
-            <Box className='flex gap-x-2'>
-              <FitnessCenterRounded />
-              <b className='text-lg'>Practices: </b>
-              {HeartSeparatedList(my.knowledge.practices, theme.darkMode)}
-            </Box>
-            <Box className='flex gap-x-2'>
-              <BuildRounded />
-              <b className='text-lg'>Technologies: </b>
-              {HeartSeparatedList(my.knowledge.technologies, theme.darkMode)}
-            </Box>
+            {Object.keys(my.skills).map((key, idx) => {
+              const Icon = my.skills[key].Icon;
+              return (
+                <Box key={idx} className='flex gap-x-2'>
+                  <Icon />
+                  <b className='text-lg'>{key.charAt(0).toUpperCase() + key.slice(1)}: </b>
+                  {HeartSeparatedList(my.skills[key].bullets, theme.darkMode)}
+                </Box>
+              )
+            })}
           </ul>
         </Section>
         <Section title='Experience'>
-          {my.jobs.map((job, i) => (
-            <ul key={i}>
+          {my.jobs.map(({ Icon, ...job }, idx) => (
+            <ul key={idx}>
               <Box className="flex gap-x-2">
-                {jobIcons[i]}
-                <Details {...job} />
+                <Icon />
+                <Details {...job as IMyExperience} size="base" darkMode={theme.darkMode} />
               </Box>
               <ul>
                 {job.bullets.map((item, j) => (
-                  <li key={j} className={clsx(theme.darkMode ? 'text-zinc-300' : 'text-zinc-700')}>{item}</li>
+                  <li key={j} className={clsx(theme.darkMode ? 'text-slate-300' : 'text-slate-700')}>{item}</li>
                 ))}
               </ul>
             </ul>
           ))}
         </Section>
         <Section title='Education'>
-          {my.education.map((education, i) => (
-            <ul key={i}>
+          {my.education.map(({ Icon, ...education }, idx) => (
+            <ul key={idx}>
               <Box className="flex gap-x-2">
-                <SchoolRounded />
-                <Details {...education} />
+                <Icon />
+                <Details {...education as IMyExperience} size="base" darkMode={theme.darkMode} />
               </Box>
               <ul>
                 {education.bullets.map((bullet, j) => (

@@ -6,8 +6,8 @@ import { IMyExperience } from "../../personal.config";
 
 export const Header = (props: { darkMode: boolean }) => (
   <Box className='text-center pb-2'>
-    <h1 className={clsx("text-4xl font-bold font-display tracking-tight sm:text-5xl", props.darkMode ? 'text-zinc-100' : 'text-zinc-800')}>Joshua Shevach</h1>
-    <Box className={clsx("pb-2 [&>*]:inline-block [&>*]:px-4 [&>*]:pb-2", props.darkMode ? 'text-zinc-300' : 'text-zinc-600')}>
+    <h1 className={clsx("text-4xl font-bold font-display tracking-tight sm:text-5xl", props.darkMode ? 'text-slate-100' : 'text-slate-800')}>Joshua Shevach</h1>
+    <Box className={clsx("pb-2 [&>*]:inline-block [&>*]:px-4 [&>*]:pb-2", props.darkMode ? 'text-slate-300' : 'text-slate-600')}>
       <span>github.com/BentAllenDesign</span>
       <span>me@joshe.app</span>
       <br />
@@ -23,16 +23,21 @@ export const Section = (props: { children?: ReactNode | ReactNode[], title: stri
   </Box>
 );
 
-export const Details = memo<IMyExperience>((props) => (
+interface IDetailProps {
+  darkMode?: boolean;
+  size: 'lg' | 'base';
+}
+
+export const Details = memo<IMyExperience & IDetailProps>((props) => (
   <div className='flex flex-col pb-1 w-full'>
-    <span className='font-bold'>{props.title}</span>
-    <div className='flex justify-between whitespace-no-wrap flex-wrap'>
-      <span className=''>
+    <span className={clsx("font-bold", props.size === 'lg' ? 'text-lg' : 'text-base')}>{props.title}</span>
+    <div className={clsx("flex justify-between whitespace-no-wrap flex-wrap", props.darkMode ? 'text-slate-400' : 'text-slate-600' )}>
+      <span>
         <i>{props.company}</i>
       </span>
-      <span className=''>
+      <span>
         <i>
-          <span>{props.duration[0]}—</span>
+          <span>{props.duration[0]} — </span>
           <wbr />
           <span>{props.duration[1]}</span>
         </i>
@@ -48,7 +53,7 @@ export const HeartSeparatedList = (list: string[], darkMode: boolean) => {
       {list.map((item, idx) => (
         <>
           <BoltRounded className="text-sm first:hidden" />
-          <span key={idx} className={clsx("w-max flex break-words", darkMode ? 'text-zinc-300' : 'text-zinc-700')}>
+          <span key={idx} className={clsx("w-max flex break-words", darkMode ? 'text-slate-300' : 'text-slate-700')}>
             {item}
           </span>
         </>

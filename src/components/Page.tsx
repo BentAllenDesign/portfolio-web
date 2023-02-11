@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Divider } from "@mui/material"
 import { Container } from "@mui/system"
 import clsx from "clsx"
 import { useCallback, useEffect } from "react"
@@ -36,6 +36,10 @@ export const Page = () => {
       </Box>
       <Box className="pt-40 relative z-10">
         <Outlet context={theme} />
+      </Box>
+      <Divider className={clsx("w-screen my-12", theme.darkMode && "bg-slate-600")} />
+      <Box className="max-w-sm mb-12 -mt-4 text-slate-500 text-center mx-auto">
+        © 2023 Joshua Shevach. All rights reserved.
       </Box>
     </Box>
   )
