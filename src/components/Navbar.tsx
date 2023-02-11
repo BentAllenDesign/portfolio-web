@@ -1,11 +1,11 @@
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { Box, Container, IconButton } from "@mui/material";
 import clsx from "clsx";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { AppThemeContext } from "../lib/hooks/useAppTheme";
 
-const linkStyles = "no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm hover:text-cyan-500";
+// const linkStyles = clsx("no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm hover:text-cyan-500 dark);
 
 interface INavbar {
   theme: AppThemeContext;
@@ -17,9 +17,13 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
     setDarkMode(!theme.darkMode);
   }, [theme.darkMode]);
 
+  const linkStyles = useMemo<string>(() => 
+    clsx("no-underline block capitalize text-lg text-inherit font-medium transition-all duration-150 ease-in-out drop-shadow-sm", theme.darkMode ? 'hover:text-zinc-200' : 'hover:text-zinc-600')
+  , [theme.darkMode])
+
   return (
-    <Box className="flex items-center drop-shadow-md z-20 fixed w-full top-0 backdrop-blur-sm">
-      <Box className={clsx("absolute w-full h-full opacity-50 backdrop-blur-lg", theme.darkMode ? 'bg-gray-900' : 'bg-white')} />
+    <Box className="flex items-center drop-shadow-md z-20 fixed w-full top-0 backdrop-blur">
+      <Box className={clsx("absolute w-full h-full opacity-70 backdrop-blur-lg", theme.darkMode ? 'bg-slate-800' : 'bg-white')} />
       <Container className="flex items-center py-3">
         <Box className="font-logo -rotate-6 -mt-[34px]">
           <Link to="/" className="group no-underline text-transparent">

@@ -10,19 +10,6 @@ import { useAppTheme } from '../lib/hooks/useAppTheme'
 import { IPageProps } from '../lib/types'
 import { useEffect } from 'react'
 
-const jobIcons = [
-  <SettingsRounded key={0} />,
-  <SchoolRounded key={1} />,
-]
-
-const projectIcons = [
-  <CodeRounded />,
-  <DataObjectRounded />,
-  <ConfirmationNumberRounded />,
-  <PeopleRounded />,
-  <SportsEsportsRounded />
-]
-
 export const ResumePage = (props: IPageProps) => {
   const theme = useAppTheme();
 
@@ -34,12 +21,12 @@ export const ResumePage = (props: IPageProps) => {
         <Header {...theme} />
         <Section title='Projects'>
           <ul className='[&>*]:my-4'>
-            {projectIcons.map((icon, idx) => (
-              <Box className='flex gap-x-2'>
-                {icon}
+            {my.projects.map((project, idx) => (
+              <Box key={idx} className='flex gap-x-2'>
+                {project.icon}
                 <Box>
-                  <b className='text-lg'>{my.projects.names[idx]}: </b>
-                  <span className={clsx(theme.darkMode ? 'text-zinc-300' : 'text-zinc-700')}>{my.projects.bullets[idx]}</span>
+                  <b className='text-lg'>{project.name}: </b>
+                  <span className={clsx(theme.darkMode ? 'text-zinc-300' : 'text-zinc-700')}>{project.detail}</span>
                 </Box>
               </Box>
             ))}
@@ -47,28 +34,20 @@ export const ResumePage = (props: IPageProps) => {
         </Section>
         <Section title='Skills'>
           <ul className='[&>*]:my-4'>
-            <Box className='flex gap-x-2'>
-              <CodeRounded />
-              <b className='text-lg'>Languages: </b>
-              {HeartSeparatedList(my.knowledge.languages, theme.darkMode)}
-            </Box>
-            <Box className='flex gap-x-2'>
-              <FitnessCenterRounded />
-              <b className='text-lg'>Practices: </b>
-              {HeartSeparatedList(my.knowledge.practices, theme.darkMode)}
-            </Box>
-            <Box className='flex gap-x-2'>
-              <BuildRounded />
-              <b className='text-lg'>Technologies: </b>
-              {HeartSeparatedList(my.knowledge.technologies, theme.darkMode)}
-            </Box>
+            {Object.keys(my.skills).map((key, idx) => (
+              <Box className='flex gap-x-2'>
+                {my.skills[key].icon}
+                <b className='text-lg'>{key.charAt(0).toUpperCase() + key.slice(1)}: </b>
+                {HeartSeparatedList(my.skills[key].bullets, theme.darkMode)}
+              </Box>
+            ))}
           </ul>
         </Section>
         <Section title='Experience'>
-          {my.jobs.map((job, i) => (
-            <ul key={i}>
+          {my.jobs.map((job, idx) => (
+            <ul key={idx}>
               <Box className="flex gap-x-2">
-                {jobIcons[i]}
+                {job.icon}
                 <Details {...job} />
               </Box>
               <ul>
