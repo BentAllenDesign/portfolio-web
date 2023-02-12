@@ -43,7 +43,7 @@ export const Navbar = memo<INavbar>(({ theme, setDarkMode }) => {
   }, [theme.darkMode]);
 
   return (
-    <Box className="flex items-center drop-shadow-md z-20 fixed w-full top-0 backdrop-blur">
+    <Box className="flex items-center drop-shadow-md z-20 sticky w-full top-0 backdrop-blur">
       <Box className={clsx("absolute w-full h-full opacity-70 backdrop-blur-lg", theme.darkMode ? 'bg-slate-800' : 'bg-slate-100')} />
       <Container className="flex items-center py-3">
         <Box className="font-logo -rotate-6 -mt-[34px]">
