@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 import { Details, Header, HeartSeparatedList, Section } from '../components/Resume'
 import { useAppTheme } from '../lib/hooks/useAppTheme'
 import { IPageProps } from '../lib/types'
-import { BoltRounded } from '@mui/icons-material'
 
 export const ResumePage = (props: IPageProps) => {
   const theme = useAppTheme();
