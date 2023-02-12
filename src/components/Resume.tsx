@@ -6,7 +6,7 @@ import { IMyExperience } from "../../personal.config";
 
 export const Header = (props: { darkMode: boolean }) => (
   <Box className='text-center pb-2'>
-    <h1 className={clsx("text-4xl font-bold font-display tracking-tight sm:text-5xl", props.darkMode ? 'text-slate-100' : 'text-slate-800')}>Joshua Shevach</h1>
+    <h1 className={clsx("text-4xl font-bold font-display tracking-tight sm:text-5xl mt-0", props.darkMode ? 'text-slate-100' : 'text-slate-800')}>Joshua Shevach</h1>
     <Box className={clsx("pb-2 [&>*]:inline-block [&>*]:px-4 [&>*]:pb-2", props.darkMode ? 'text-slate-300' : 'text-slate-600')}>
       <span>github.com/BentAllenDesign</span>
       <span>me@joshe.app</span>
@@ -30,8 +30,8 @@ interface IDetailProps {
 
 export const Details = memo<IMyExperience & IDetailProps>((props) => (
   <div className='flex flex-col pb-1 w-full'>
-    <span className={clsx("font-bold", props.size === 'lg' ? 'text-lg' : 'text-base')}>{props.title}</span>
-    <div className={clsx("flex justify-between whitespace-no-wrap flex-wrap", props.darkMode ? 'text-slate-400' : 'text-slate-600' )}>
+    <span className="font-bold text-lg">{props.title}</span>
+    <div className={clsx("flex justify-between whitespace-no-wrap flex-wrap", props.darkMode ? 'text-slate-400' : 'text-slate-600')}>
       <span>
         <i>{props.company}</i>
       </span>
@@ -46,18 +46,11 @@ export const Details = memo<IMyExperience & IDetailProps>((props) => (
   </div>
 ));
 
-export const HeartSeparatedList = (list: string[], darkMode: boolean) => {
-
-  return (
-    <span className="inline-flex flex-wrap gap-x-2 items-center first:hidden break-word">
-      {list.map((item, idx) => (
-        <>
-          <BoltRounded className="text-sm first:hidden" />
-          <span key={idx} className={clsx("w-max flex break-words", darkMode ? 'text-slate-300' : 'text-slate-700')}>
-            {item}
-          </span>
-        </>
-      ))}
+export const HeartSeparatedList = (list: string[], darkMode: boolean) => list.map((item, idx, arr) => (
+  <span className='inline-flex items-center'>
+    <span className={clsx("inline-flex", darkMode ? 'text-slate-300' : 'text-slate-700')}>
+      {item}
     </span>
-  );
-}
+    <BoltRounded className={clsx("text-sm mx-1", idx === arr.length - 1 && 'hidden')} />
+  </span>
+));

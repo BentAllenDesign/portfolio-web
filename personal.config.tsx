@@ -121,7 +121,7 @@ export const my: IMy = {
     {
       Icon: SettingsRounded,
       title: 'Full Stack Engineer',
-      company: 'Cognizant Technologies',
+      company: 'Cognizant',
       location: 'Plano, TX',
       duration: ['June 2021', 'Present'],
       bullets: [

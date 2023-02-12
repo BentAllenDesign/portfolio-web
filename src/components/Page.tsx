@@ -25,16 +25,16 @@ export const Page = () => {
   }, []);
 
   return (
-    <Box className={clsx("w-screen min-h-screen overflow-y-hidden", theme.darkMode ? "bg-slate-800" : "bg-slate-100")}>
-      <Navbar {...{ theme, setDarkMode }} />
+    <Box className={clsx("w-screen h-screen overflow-y-scroll relative flex flex-col", theme.darkMode ? "bg-slate-800" : "bg-slate-100")}>
       <Box className="absolute flex z-0 w-screen h-screen overflow-x-clip overflow-y-clip">
-        <Container className={clsx("relative h-[200px] w-[800px]", theme.darkMode ? 'opacity-40' : 'opacity-60')}>
+        <Container className={clsx("relative h-[200px] w-[800px]", theme.darkMode ? 'opacity-50' : 'opacity-80')}>
           <div className="absolute top-0 -left-4 w-[520px] h-[420px] bg-cyan-300 rounded-full mix-blend-multiply blur-2xl opacity-70 animate-blob" />
           <div className="absolute top-0 -right-4 w-[420px] h-96 bg-pink-300 rounded-full mix-blend-multiply blur-2xl opacity-70 animate-blob-slow animation-delay-2000" />
           <div className="absolute -bottom-8 left-1/4 w-96 h-[420px] bg-amber-300 rounded-full mix-blend-multiply blur-2xl opacity-70 animate-blob animation-delay-4000" />
         </Container>
       </Box>
-      <Box className="pt-40 relative z-10">
+      <Navbar {...{ theme, setDarkMode }} />
+      <Box className="pt-12 sm:pt-24 relative z-10 mb-auto">
         <Outlet context={theme} />
       </Box>
       <Divider className={clsx("w-screen my-12", theme.darkMode && "bg-slate-600")} />
