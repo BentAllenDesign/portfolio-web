@@ -15,7 +15,7 @@ export const Page = () => {
 
   const pageRef = React.useRef<HTMLDivElement>(null);
 
-  useOnRouteChange((location) => {
+  useOnRouteChange(() => {
     pageRef.current?.scrollTo(0,0);
   })
 
