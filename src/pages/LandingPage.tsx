@@ -58,7 +58,7 @@ export const LandingPage = (props: IPageProps) => {
       <Container className="space-y-12">
         <Box className="flex flex-col md:flex-row-reverse w-full gap-8">
           <Box className="md:w-1/3">
-            <h2 className={clsx("font-display mt-0 text-3xl lg:text-4xl", darkMode ? 'text-slate-200' : 'text-slate-800')}>Work History</h2>
+            <h2 className={clsx("font-display md:mt-0 text-3xl lg:text-4xl", darkMode ? 'text-slate-200' : 'text-slate-800')}>Work History</h2>
             <Paper variant="outlined" className={clsx("p-8", darkMode && "bg-slate-800 border-slate-700")}>
               {my.jobs.map(({ Icon, ...job }, idx) => (
                 <Box key={idx} className={clsx("flex gap-x-2 mb-4 last:mb-0", darkMode ? 'text-slate-200' : 'text-slate-800')}>
