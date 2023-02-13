@@ -16,7 +16,7 @@ export const ResumePage = (props: IPageProps) => {
     <Container className={clsx("max-w-5xl", theme.darkMode ? 'text-slate-100' : 'text-slate-800')}>
       <Header {...theme} />
       <Section title='Projects'>
-        <ul className='[&>*]:my-4'>
+        <ul className='[&>*]:my-4 pl-3 sm:pl-6 lg:pl-inherit'>
           {my.projects.map(({ Icon, ...project }, idx) => (
             <Box key={idx} className='flex gap-x-2'>
               <Icon className="mt-0.5" />
@@ -29,7 +29,7 @@ export const ResumePage = (props: IPageProps) => {
         </ul>
       </Section>
       <Section title='Skills'>
-        <ul className='[&>*]:my-4'>
+        <ul className='[&>*]:my-4 pl-3 sm:pl-6 lg:pl-inherit'>
           {Object.keys(my.skills).map((key, idx) => {
             const Icon = my.skills[key].Icon;
             return (
@@ -46,7 +46,7 @@ export const ResumePage = (props: IPageProps) => {
       </Section>
       <Section title='Experience'>
         {my.jobs.map(({ Icon, ...job }, idx) => (
-          <ul key={idx}>
+          <ul key={idx} className='pl-3 sm:pl-6 lg:pl-inherit'>
             <Box className="flex gap-x-2">
               <Icon className="mt-0.5" />
               <Details {...job as IMyExperience} size="base" darkMode={theme.darkMode} />
@@ -61,7 +61,7 @@ export const ResumePage = (props: IPageProps) => {
       </Section>
       <Section title='Education'>
         {my.education.map(({ Icon, ...education }, idx) => (
-          <ul key={idx}>
+          <ul key={idx} className='pl-3 sm:pl-6 lg:pl-inherit'>
             <Box className="flex gap-x-2">
               <Icon className="mt-0.5" />
               <Details {...education as IMyExperience} size="base" darkMode={theme.darkMode} />

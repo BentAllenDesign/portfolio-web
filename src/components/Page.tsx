@@ -1,9 +1,10 @@
 import { Box, Divider } from "@mui/material"
 import { Container } from "@mui/system"
 import clsx from "clsx"
-import { useCallback, useEffect } from "react"
+import React from "react"
 import { Outlet } from "react-router-dom"
 import { useAppThemeState } from "../lib/hooks/useAppTheme"
+import { useOnRouteChange } from "../lib/hooks/useOnRouteChange"
 import { Navbar } from "./Navbar"
 
 export const Page = () => {
@@ -12,7 +13,13 @@ export const Page = () => {
     return { darkMode: storedDarkMode === 'true' };
   });
 
-  useEffect(() => {
+  const pageRef = React.useRef<HTMLDivElement>(null);
+
+  useOnRouteChange((location) => {
+    pageRef.current?.scrollTo(0,0);
+  })
+
+  React.useEffect(() => {
     if (!localStorage.getItem('darkMode')) {
       setTheme({ darkMode: true })
       localStorage.setItem('darkMode', `true`);
@@ -20,12 +27,12 @@ export const Page = () => {
     else localStorage.setItem('darkMode', `${theme.darkMode}`);
   }, [theme]);
 
-  const setDarkMode = useCallback((darkMode: boolean) => {
+  const setDarkMode = React.useCallback((darkMode: boolean) => {
     setTheme({ ...theme, darkMode });
   }, []);
 
   return (
-    <Box className={clsx("w-screen h-screen overflow-y-scroll relative flex flex-col", theme.darkMode ? "bg-slate-800" : "bg-slate-100")}>
+    <Box ref={pageRef} className={clsx("w-screen h-screen overflow-y-scroll relative flex flex-col", theme.darkMode ? "bg-slate-800" : "bg-slate-100")}>
       <Box className="absolute flex z-0 w-screen h-screen overflow-x-clip overflow-y-clip">
         <Container className={clsx("relative h-[200px] w-[800px]", theme.darkMode ? 'opacity-50' : 'opacity-80')}>
           <div className="absolute top-0 -left-4 w-[520px] h-[420px] bg-cyan-300 rounded-full mix-blend-multiply blur-2xl opacity-70 animate-blob" />
